@@ -1,114 +1,96 @@
-//
-//  main.c
-//  Interview
-//
-//  Created by raghav on 8/8/18.
-//  Copyright © 2018 raghav. All rights reserved.
-//
 
-#include <assert.h>
-#include <limits.h>
-#include <math.h>
-#include <stdbool.h>
-#include <stddef.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+/* C program for next greatest element*/
+#include<stdlib.h>
+#include<stdio.h>
+#include"primeFactor.h"
 
-char* readline();
-char** split_string(char*);
-
-// Complete the hourglassSum function below.
-int hourglassSum(int arr_rows, int arr_columns, int** arr) {
+/* merge function
+ This  */
+void merge(int* arrPtr,int l,int m,int r){
     
+    /* copy values from l <--> m into one array and m+1 t0 r into another array. */
+    int leftTemp = m-l+1;
+    int rightTemp = r-m;
+    int *duparrPTr=arrPtr;
+    int leftBuffer[leftTemp],rightBuffer[rightTemp];
+    for (int i=0;i<leftTemp;i++){
+        leftBuffer[i] = *duparrPTr;
+        duparrPTr++;
+    }
+    for (int j=0;j<rightTemp;j++){
+        rightBuffer[j] = *duparrPTr;
+        duparrPTr++;
+    }
+    /* Merge into arr with below logic:
+     loop
+     */
+    int a=0;int b=0;int c=0;
+    while(a < leftTemp && b < rightTemp){
+        
+            if(leftBuffer[a]<rightBuffer[b]){
+                *arrPtr = leftBuffer[a];
+                a++;
+                arrPtr++;
+                }
+            else if(leftBuffer[a]>rightBuffer[b]){
+                *arrPtr = rightBuffer[b];
+                b++;
+                arrPtr++;
+                }
+        
+    }
+        while(a < leftTemp){
+        *arrPtr = leftBuffer[a];
+        a++;
+        arrPtr++;
+    }
+    while(b < rightTemp){
+        *arrPtr = rightBuffer[a];
+        b++;
+        arrPtr++;
+    }
     
 }
 
+
+void mergeSort(int* arrPtr,int l,int r){
+    if(l<r){
+        int middleIndex = (l+r)/2;
+        /* left half */
+        mergeSort(arrPtr, l, middleIndex);
+        /* right half */
+        mergeSort(arrPtr, middleIndex+1, r);
+        /* Merge */
+        merge(arrPtr,l,middleIndex,r);
+        
+    }
+}
+void printArray(int A[], int size)
+{
+    int i;
+    for (i=0; i < size; i++)
+        printf("%d ", A[i]);
+    printf("\n");
+}
 int main()
 {
-    FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
-    
-    int** arr = malloc(6 * sizeof(int*));
-    
-    for (int i = 0; i < 6; i++) {
-        *(arr + i) = malloc(6 * (sizeof(int)));
-        
-        char** arr_item_temp = split_string(readline());
-        
-        for (int j = 0; j < 6; j++) {
-            char* arr_item_endptr;
-            char* arr_item_str = *(arr_item_temp + j);
-            int arr_item = strtol(arr_item_str, &arr_item_endptr, 10);
-            
-            if (arr_item_endptr == arr_item_str || *arr_item_endptr != '\0') { exit(EXIT_FAILURE); }
-            
-            *(*(arr + i) + j) = arr_item;
-        }
+    int arr[] = {12, 11, 13, 5, 6, 7};
+    int arr_size = sizeof(arr)/sizeof(arr[0]);
+    //Driver program to print prime factors for an intezer.
+    int testPrimeNumber = 10;
+    int size=0;
+    int* primeFactor = malloc(sizeof(int)*PredictedMaxFactors);
+    size = primeFactors(testPrimeNumber,primeFactor,size);
+    while(size>0){
+       
+        printf("prime factors are : %d \n",*primeFactor);
+        primeFactor= primeFactor+1;
+        size-=1;
     }
     
-    int arr_rows = 6;
-    int arr_columns = 6;
     
-    int result = hourglassSum(arr_rows, arr_columns, arr);
-    
-    fprintf(fptr, "%d\n", result);
-    
-    fclose(fptr);
-    
+    //mergeSort(arr, 0, arr_size - 1);
+    //printf("\nSorted array is \n");
+    //printArray(arr, arr_size);
     return 0;
 }
-
-char* readline() {
-    size_t alloc_length = 1024;
-    size_t data_length = 0;
-    char* data = malloc(alloc_length);
-    
-    while (true) {
-        char* cursor = data + data_length;
-        char* line = fgets(cursor, alloc_length - data_length, stdin);
-        
-        if (!line) { break; }
-        
-        data_length += strlen(cursor);
-        
-        if (data_length < alloc_length - 1 || data[data_length - 1] == '\n') { break; }
-        
-        size_t new_length = alloc_length << 1;
-        data = realloc(data, new_length);
-        
-        if (!data) { break; }
-        
-        alloc_length = new_length;
-    }
-    
-    if (data[data_length - 1] == '\n') {
-        data[data_length - 1] = '\0';
-    }
-    
-    data = realloc(data, data_length);
-    
-    return data;
-}
-
-char** split_string(char* str) {
-    char** splits = NULL;
-    char* token = strtok(str, " ");
-    
-    int spaces = 0;
-    
-    while (token) {
-        splits = realloc(splits, sizeof(char*) * ++spaces);
-        if (!splits) {
-            return splits;
-        }
-        
-        splits[spaces - 1] = token;
-        
-        token = strtok(NULL, " ");
-    }
-    
-    return splits;
-}
-
-
