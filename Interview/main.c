@@ -77,7 +77,7 @@ int main()
     int arr[] = {12, 11, 13, 5, 6, 7};
     int arr_size = sizeof(arr)/sizeof(arr[0]);
     //Driver program to print prime factors for an intezer.
-    int testPrimeNumber = 10;
+    int testPrimeNumber = 100;
     int size=0;
     int* primeFactor = malloc(sizeof(int)*PredictedMaxFactors);
     size = primeFactors(testPrimeNumber,primeFactor,size);
