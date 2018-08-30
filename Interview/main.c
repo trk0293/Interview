@@ -73,10 +73,14 @@ void printArray(int A[], int size)
     printf("\n");
 }
 int main()
-{
+{/* uncomment for testing merge sort.
     int arr[] = {12, 11, 13, 5, 6, 7};
     int arr_size = sizeof(arr)/sizeof(arr[0]);
-    //Driver program to print prime factors for an intezer.
+    mergeSort(arr, 0, arr_size - 1);
+    printf("\nSorted array is \n");
+    printArray(arr, arr_size);
+  */
+  //Driver program to print prime factors for an intezer.
     int testPrimeNumber = 100;
     int size=0;
     int* primeFactor = malloc(sizeof(int)*PredictedMaxFactors);
@@ -88,9 +92,5 @@ int main()
         size-=1;
     }
     
-    
-    //mergeSort(arr, 0, arr_size - 1);
-    //printf("\nSorted array is \n");
-    //printArray(arr, arr_size);
     return 0;
 }
