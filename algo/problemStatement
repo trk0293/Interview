@@ -1,0 +1,40 @@
+
+Geeks love Heavy String Submissions: 145   Accuracy: 8.97%   Max. Score: 100
+
+Given two Strings of lowercase characters, where characters have GeeksforGeeks defined values as below :
+a -> 1
+b -> 2
+c -> 3
+...
+y -> 25
+z -> 26
+
+Your task is to print the maximum weight of the heavier String, where weight of the string is calculated as below :
+
+Weight of the String = maximum weight of characters
+
+Weight of Character = GeeksforGeeks defined value of character + number of occurences of character + index of character + second maximum prime factor of length of string
+
+Note :
+
+Each appearing character in the string is considered only once for calculating weight of the string.
+In case, second maximum prime factor does not exist, take the maximum prime factor of length of string for calculations.
+Input : First line of Input contains number of Testcases T. For each testcase, first line contains String 1 and second line contains String 2.
+Output : For each testcase, print the maximum weight of heaviest string. In case of similar weight, print "equal", without quotes.
+
+Constraints :
+1 <= T <= 10
+2 <= Length of String <= 10^4
+
+Example :
+Input :
+1
+strings
+heavy
+Output :
+157
+
+Explanation :
+Weight of strings = 157
+Weight of heavy = 101
+So, Heavy String is "strings" with maximum weight = 157.
