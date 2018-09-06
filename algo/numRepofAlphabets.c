@@ -11,7 +11,7 @@
 
 
 int fntoRetNum(char* character){
-    char ch;
-    ch =*character;
-    return ch-96;
+    int mappedValue = 0;
+    
+    return mappedValue;
 }

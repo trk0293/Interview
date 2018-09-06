@@ -11,3 +11,7 @@ algo.xcodeproj/project.pbxproj
 *.xcworkspacedata
 *.xcworkspacedata
 Interview/mergeSort.txt
+*.xcuserstate
+algo.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+algo.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+*.xcworkspacedata

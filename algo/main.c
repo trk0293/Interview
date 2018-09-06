@@ -1,4 +1,4 @@
-
+		
 /* C program for next greatest element*/
 #include<stdlib.h>
 #include<stdio.h>
@@ -7,7 +7,6 @@
 #define maxinf -1000000
 //#define lengthofstring(string) strlen(string)
 char* string  = "strings";
-int postPrimefactor(int* primeFactor, int size);
 /* merge function
  This  */
 void merge(int* arrPtr,int l,int m,int r){
@@ -83,70 +82,49 @@ int weightofString(char* character){
     int index =0;
     int size=0;
     int max=0;
-    int dupArray[strlen(string)];
     int* primeFactor = malloc(sizeof(int)*PredictedMaxFactors);
     while(*character != '\0'){
-        repeatCount =0;
-
+        int characterCount =1;
+        /* Defined value [A..Z]->[1..26] */
+        value += fntoRetNum(character);
         /* Duplicates of the same string */
         charptr = string;
         while(*charptr!='\0'){
             if(*character == *charptr){
                 repeatCount++;
-                if(repeatCount>1)
-                {   dupArray[index] = *character;
-                    break;
-                }
-            }
-            charptr=charptr+1;
-        }
-        index++;
-        // increase the character count
-        character=character+1;
-        for(int j=index+1;j<=strlen(string);j++){
-            if ((*character == dupArray[j]&&(*(character+1)=='\0'))){
-                return value;
-            }
-            if(*character == dupArray[j]){
+                charptr=charptr+1;
                 break;
             }
         }
-        /* Defined value [A..Z]->[1..26] */
-        value += fntoRetNum(character);
         value += repeatCount-1;
         /* index */
         value += index;
+        index++;
         /* second/max prime factor for length of string */
         // Post process all the prime factors to get second/max
         size = primeFactors(strlen(string),primeFactor,size);
-        int prime= postPrimefactor(primeFactor, size);
-        value=value+prime;
+        int first,second =maxinf;
+        for(int i=0;i<size;i++){
+            if(*primeFactor > first){
+                first = *primeFactor;
+                second = first;
+                primeFactor=primeFactor+1;
+            }
+            else if(*primeFactor >second){
+                second =*primeFactor;
+                primeFactor = primeFactor+1;
+            }
+            else
+                primeFactor=primeFactor+1;
+        }
+        if(second !=maxinf)
+            value += second;
+        else if(first !=maxinf)
+            value+=first;
+        else
+            printf("No prime factors.check primeFactors Fn");
         }
     return value;
-}
-int postPrimefactor(int* primeFactor, int size){
-    int first,second =maxinf;
-    int prime = 0;
-    for(int i=0;i<size;i++){
-        if(*primeFactor > first){
-            second = first;
-            first = *primeFactor;
-            primeFactor=primeFactor+1;
-        }
-        else if(*primeFactor >second){
-            second =*primeFactor;
-            primeFactor = primeFactor+1;
-        }
-        else
-            primeFactor=primeFactor+1;
-    }
-    if(second !=maxinf && second >=0)
-        prime += second;
-    else if(first !=maxinf && first >=0)
-        prime+=first;
-    else
-        printf("No prime factors.check primeFactors Fn");
-    return prime;
 }
 int main()
 {/* uncomment for testing merge sort.
