@@ -1,9 +1,13 @@
-/Users/raghav/Documents/Interview/Interview.xcodeproj
+/Users/raghav/Documents/problems/algo.xcodeproj
 *.plist
 *.xcexplist
 *.xcbkptlist
 *.pbxproj
 *.pbxproj
 *.pbxproj
-Interview.xcodeproj/project.pbxproj
+algo.xcodeproj/project.pbxproj
 *.pbxproj
+*.pbxproj
+*.xcworkspacedata
+*.xcworkspacedata
+Interview/mergeSort.txt
