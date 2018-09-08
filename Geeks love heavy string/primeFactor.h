@@ -13,7 +13,6 @@
 
 #include <stdio.h>
 
-#define PredictedMaxFactors 10
-
-int primeFactors(int n,int* primeFactor,int size);
+#define PredictedMaxFactors 1000
+int primeFactors(int n);
 #endif /* primeFactor_h */

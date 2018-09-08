@@ -36,5 +36,5 @@ Output :
 
 Explanation :
 Weight of strings = 157
-Weight of heavy = 101
+Weight of heavy = 106
 So, Heavy String is "strings" with maximum weight = 157.

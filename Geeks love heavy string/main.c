@@ -4,9 +4,10 @@
 #include<stdio.h>
 #include"primeFactor.h"
 #include "numRepofAlphabets.h"
+#include <stdbool.h>
 #define maxinf -1000000
 //#define lengthofstring(string) strlen(string)
-char* string  = "strings";
+char* string  = "heavy";
 /* merge function
  This  */
 void merge(int* arrPtr,int l,int m,int r){
@@ -75,83 +76,52 @@ void printArray(int A[], int size)
         printf("%d ", A[i]);
     printf("\n");
 }
+
 int weightofString(char* character){
     int value =0;
-    char* charptr;
-    int repeatCount=0;
+    char* charptr=string;
     int index =0;
-    int size=0;
-    int max=0;
-    int* primeFactor = malloc(sizeof(int)*PredictedMaxFactors);
-    while(*character != '\0'){
-        int characterCount =1;
+    int repCount=0;
+    while((*character != '\0')){
+        index++;
+        charptr = string;
+        int i=0;
+        int flag1=0;
+        while(*charptr!='\0'){
+            if (!flag1){
+            i++;
+            }
+            if(*character == *charptr){
+                if(i>=index){
+                    flag1=1;
+                    repCount++;}
+                else
+                    break;
+            }
+            charptr =charptr+1;
+        }
+        value += repCount;
+        
+        if(flag1){
         /* Defined value [A..Z]->[1..26] */
         value += fntoRetNum(character);
-        /* Duplicates of the same string */
-        charptr = string;
-        while(*charptr!='\0'){
-            if(*character == *charptr){
-                repeatCount++;
-                charptr=charptr+1;
-                break;
-            }
-        }
-        value += repeatCount-1;
         /* index */
         value += index;
-        index++;
         /* second/max prime factor for length of string */
         // Post process all the prime factors to get second/max
-        size = primeFactors(strlen(string),primeFactor,size);
-        int first,second =maxinf;
-        for(int i=0;i<size;i++){
-            if(*primeFactor > first){
-                first = *primeFactor;
-                second = first;
-                primeFactor=primeFactor+1;
-            }
-            else if(*primeFactor >second){
-                second =*primeFactor;
-                primeFactor = primeFactor+1;
-            }
-            else
-                primeFactor=primeFactor+1;
+        value+=primeFactors(strlen(string));
         }
-        if(second !=maxinf)
-            value += second;
-        else if(first !=maxinf)
-            value+=first;
-        else
-            printf("No prime factors.check primeFactors Fn");
+        repCount=0;
+        character = character+1;
         }
     return value;
 }
+
+
 int main()
-{/* uncomment for testing merge sort.
-    int arr[] = {12, 11, 13, 5, 6, 7};
-    int arr_size = sizeof(arr)/sizeof(arr[0]);
-    mergeSort(arr, 0, arr_size - 1);
-    printf("\nSorted array is \n");
-    printArray(arr, arr_size);
-  */
-  /*
-    //Driver program to print prime factors for an intezer.
-    int testPrimeNumber = 100;
-    int size=0;
-    int* primeFactor = malloc(sizeof(int)*PredictedMaxFactors);
-    size = primeFactors(testPrimeNumber,primeFactor,size);
-    /*unit test to print the prime factors
-    while(size>0){
-       
-        printf("prime factors are : %d \n",*primeFactor);
-        primeFactor= primeFactor+1;
-        size-=1;
-    }
-    */
-    
-    // Function call to return numerical representation for [A->Z] -> [1->26]
+{
+    // Function) call to return numerical representation for [A->Z] -> [1->26]
     int weight=weightofString(string);
     printf("weight of string is %d \n",weight);
-
     return 0;
 }
