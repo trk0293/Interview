@@ -1,15 +1,28 @@
-//
-//  main.c
-//  [HR]bubbleSort
-//
-//  Created by raghav on 9/9/18.
-//  Copyright © 2018 raghav. All rights reserved.
-//
+/* Driver program from hacker rank */
 
-#include <stdio.h>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    printf("Hello, World!\n");
-    return 0;
+
+// Complete the countSwaps function below.
+void countSwaps(int a_count, int* a) {
+    int sorted = false;
+    int swaps =0;
+    for(int i=0;i<a_count-1;i++){
+        if(sorted != true){
+            sorted = true;
+            for(int j=0;j<a_count-1;j++){
+                if(*(a+j)>*(a+j+1))
+                {
+                    int tmp = *(a+j+1);
+                    *(a+j+1) = *(a+j);
+                    *(a+j) = tmp;
+                    sorted = false;
+                    swaps++;
+                }
+            }
+        }
+    }
+    printf("Array is sorted in %d swaps.\n",swaps);
+    printf("First Element: %d\n",*a);
+    printf("Last Element: %d\n",*(a+a_count-1));
+    return;
 }
