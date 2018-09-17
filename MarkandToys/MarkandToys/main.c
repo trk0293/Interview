@@ -13,8 +13,35 @@ char** split_string(char*);
 
 // Complete the maximumToys function below.
 int maximumToys(int prices_count, int* prices, int k) {
-    
-    return 0;
+    int flag = false;
+    int tmp;
+    int numberOfToys=0;
+    for(int i=0;i<prices_count;i++){
+        if(flag == false){
+        flag = true;
+        for(int i=0; i<prices_count;i++){
+                printf("%d \n",*(prices+i));
+            }
+        for(int j=0;j<prices_count;j++){
+            if(*(prices+j)>*(prices+j+1)){
+                flag = false;
+                tmp  = *(prices+j);
+                *(prices+j) = *(prices+j+1);
+                *(prices+j+1) = tmp;
+            }
+        }
+    }
+    }
+    for(int i=0; i<prices_count;i++){
+        printf("%d \n",*(prices+i));
+    }
+    int i=0;
+    while((k-*(prices+i)>0)){ // as long as Mark has budget
+        k-=*(prices+i);
+        numberOfToys++;
+        i++;
+    }
+    return numberOfToys;
 }
 
 int main()
