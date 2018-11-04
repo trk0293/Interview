@@ -10,12 +10,9 @@
 
 #include <stdio.h>
 
-int main(int argc, const char * argv[]) {
-    int n,flag = 0;
+void isPrime(int n){
+    int flag = 0;
     int i =2;
-    printf("enter a positive number:");
-    scanf("%d",&n);
-    
     while(i<=n/2){
         if(n%i == 0)
             flag = 1;
@@ -25,5 +22,12 @@ int main(int argc, const char * argv[]) {
         printf("%d is a prime number \n",n);
     else
         printf("%d is not a prime number \n",n);
+}
+
+int main(int argc, const char * argv[]) {
+    int n=0;
+    printf("enter a positive number:");
+    scanf("%d",&n);
+    isPrime(n);
     return 0;
 }
