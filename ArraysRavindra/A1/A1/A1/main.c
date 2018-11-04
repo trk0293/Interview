@@ -39,9 +39,18 @@ void halfPyramid(int n){
 }
     return;
 }
+int digitsInteger(int n)
+{
+    int count =0;
+    while(n!=0){
+        n=n/10;
+        count++;
+    }
+    return count;
+}
 int main(int argc, const char * argv[]) {
     int n=0;
-    printf("enter a positive number:");
+    printf("enter a number:");
     scanf("%d",&n);
     /************************************************************************************************/
     /*PRIME
@@ -55,6 +64,8 @@ int main(int argc, const char * argv[]) {
     printf("factorial of %d is %lld \n ",n,factorial(n));
      */
     /************************************************************************************************/
-    halfPyramid(n);
+    //halfPyramid(n);
+    /************************************************************************************************/
+    printf("Digits in integer %d is %d \n",n,digitsInteger(n));
     return 0;
 }
