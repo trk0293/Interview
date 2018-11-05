@@ -48,6 +48,16 @@ int digitsInteger(int n)
     }
     return count;
 }
+int armstrong(int n){
+    int decimal,value=0;
+    while(!(n<10)){
+        decimal = n%10;
+        n = n/10;
+        value = value + decimal*decimal*decimal;
+    }
+    return value+n*n*n;
+    
+}
 int main(int argc, const char * argv[]) {
     int n=0;
     printf("enter a number:");
@@ -66,6 +76,12 @@ int main(int argc, const char * argv[]) {
     /************************************************************************************************/
     //halfPyramid(n);
     /************************************************************************************************/
-    printf("Digits in integer %d is %d \n",n,digitsInteger(n));
+    //printf("Digits in integer %d is %d \n",n,digitsInteger(n));
+    /************************************************************************************************/
+    int value = armstrong(n);
+    if(value == n)
+        printf("%d is an arm strong number\n",value);
+    else
+        printf("%d is not an armstrong number \n",n);
     return 0;
 }
