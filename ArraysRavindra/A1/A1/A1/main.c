@@ -1,6 +1,6 @@
 //
 //  main.c
-//  To test weather a number is prime or not.
+
 //
 //  Created by raghav on 10/19/18.
 //  Copyright © 2018 raghav. All rights reserved.
