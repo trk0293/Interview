@@ -9,6 +9,7 @@
 
 
 #include <stdio.h>
+#include <math.h>
 
 void isPrime(int n){
     int flag = 0;
@@ -53,9 +54,9 @@ int armstrong(int n){
     while(!(n<10)){
         decimal = n%10;
         n = n/10;
-        value = value + decimal*decimal*decimal;
+        value = value + pow(decimal,3);
     }
-    return value+n*n*n;
+    return value+pow(n,3);
     
 }
 void LeftPyramid(int n){
@@ -106,14 +107,14 @@ int main(int argc, const char * argv[]) {
     /************************************************************************************************/
     //printf("Digits in integer %d is %d \n",n,digitsInteger(n));
     /************************************************************************************************/
-    /*int value = armstrong(n);
+    int value = armstrong(n);
     if(value == n)
         printf("%d is an arm strong number\n",value);
     else
-        printf("%d is not an armstrong number \n",n);*/
+        printf("%d is not an armstrong number \n",n);
     /************************************************************************************************/
     // pyramid with height of input n
-    pyramid(n);
+    //pyramid(n);
     // Extra: LeftPyramid(n);
     
     return 0;
