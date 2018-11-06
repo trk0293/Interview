@@ -30,7 +30,7 @@ long long unsigned int factorial(int n){
         factorial=factorial*i;
     return factorial;
 }
-void halfPyramid(int n){
+void rightPyramid(int n){
     for(int i=1;i<=n;i++){
     for(int j=1;j<=i;j++){
         printf("* ");
@@ -58,6 +58,34 @@ int armstrong(int n){
     return value+n*n*n;
     
 }
+void LeftPyramid(int n){
+    for(int i=1;i<=n;i++){
+    for(int j=0;j<(n-i);j++){
+        printf(" ");
+    }
+    for(int k=0;k<i;k++){
+        printf("*");
+    }
+        printf("\n");
+    }
+    return ;
+}
+void pyramid(int n){
+    int k=0;
+    for(int i=1;i<=n;i++){
+        if(i!=n)
+        printf(" ");
+        for(int j=0;j<(n-i-1);j++){
+            printf(" ");
+        }
+        printf("*");
+        for(int k=0;k<i-1;k++){
+                printf(" *");
+        }
+        printf("\n");
+    }
+    return;
+}
 int main(int argc, const char * argv[]) {
     int n=0;
     printf("enter a number:");
@@ -74,14 +102,20 @@ int main(int argc, const char * argv[]) {
     printf("factorial of %d is %lld \n ",n,factorial(n));
      */
     /************************************************************************************************/
-    //halfPyramid(n);
+    //rightPyramid(n);
     /************************************************************************************************/
     //printf("Digits in integer %d is %d \n",n,digitsInteger(n));
     /************************************************************************************************/
-    int value = armstrong(n);
+    /*int value = armstrong(n);
     if(value == n)
         printf("%d is an arm strong number\n",value);
     else
-        printf("%d is not an armstrong number \n",n);
+        printf("%d is not an armstrong number \n",n);*/
+    /************************************************************************************************/
+    // pyramid with height of input n
+    pyramid(n);
+    // Extra: LeftPyramid(n);
+    
     return 0;
+    
 }
