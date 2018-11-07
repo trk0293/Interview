@@ -87,8 +87,24 @@ void pyramid(int n){
     }
     return;
 }
+void palindrome(long int n){
+    long int dupN=n;
+    int digit=0;
+    while(!(n<10)){
+        digit = n%10;
+        dupN=n;
+        while(!(dupN<10)){dupN=dupN/10;}
+        if(digit!=dupN){
+            printf("The entered number is not palindrome number \n");
+            return;
+        }
+        n=n/10;
+    }
+    printf("entered number is palindrome \n");
+    return ;
+}
 int main(int argc, const char * argv[]) {
-    int n=0;
+    long int n=0;
     printf("enter a number:");
     scanf("%d",&n);
     /************************************************************************************************/
@@ -107,15 +123,18 @@ int main(int argc, const char * argv[]) {
     /************************************************************************************************/
     //printf("Digits in integer %d is %d \n",n,digitsInteger(n));
     /************************************************************************************************/
-    int value = armstrong(n);
+    /*int value = armstrong(n);
     if(value == n)
         printf("%d is an arm strong number\n",value);
     else
-        printf("%d is not an armstrong number \n",n);
+        printf("%d is not an armstrong number \n",n);*/
     /************************************************************************************************/
     // pyramid with height of input n
     //pyramid(n);
     // Extra: LeftPyramid(n);
+    /************************************************************************************************/
+    palindrome(n);
+    /************************************************************************************************/
     
     return 0;
     
