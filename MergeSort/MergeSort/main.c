@@ -32,11 +32,12 @@ void merge(int* arrPtr,int l,int m,int r){
     int leftTemp = m-l+1;
     int rightTemp = r-m;
     int *duparrPTr=arrPtr;
+    int i,j=0; 
     int leftBuffer[leftTemp],rightBuffer[rightTemp];
-    for (int i=0;i<leftTemp;i++){
+    for (i=0;i<leftTemp;i++){
         leftBuffer[i] = duparrPTr[l+i];
     }
-    for (int j=0;j<rightTemp;j++){
+    for (j=0;j<rightTemp;j++){
         rightBuffer[j] = duparrPTr[m+1+j];
     }
 
