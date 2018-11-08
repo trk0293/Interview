@@ -7,12 +7,17 @@
 //
 
 #include <stdio.h>
+
 void mergeSort(int* arrPtr,int l,int r);
 void merge(int* arrPtr,int l,int m,int r);
 void printArray(int A[], int size);
+
 void mergeSort(int* arrPtr,int l,int r){
     int middleIndex = (l+r)/2;
     /* left half */
+    if (r==l || r-l==1){
+        return;
+    }
     mergeSort(arrPtr, l, middleIndex);
     /* right half */
     mergeSort(arrPtr, middleIndex+1, r);
@@ -20,6 +25,7 @@ void mergeSort(int* arrPtr,int l,int r){
     merge(arrPtr,l,middleIndex,r);
     
 }
+
 void merge(int* arrPtr,int l,int m,int r){
     
     /* copy values from l <--> m into one array and m+1 t0 r into another array. */
@@ -28,42 +34,61 @@ void merge(int* arrPtr,int l,int m,int r){
     int *duparrPTr=arrPtr;
     int leftBuffer[leftTemp],rightBuffer[rightTemp];
     for (int i=0;i<leftTemp;i++){
-        leftBuffer[i] = *duparrPTr;
-        duparrPTr++;
+        leftBuffer[i] = duparrPTr[l+i];
     }
     for (int j=0;j<rightTemp;j++){
-        rightBuffer[j] = *duparrPTr;
-        duparrPTr++;
+        rightBuffer[j] = duparrPTr[m+1+j];
     }
+
+    //Print buffers - for debug
+    /*
+    printf ("\n");
+
+    for (int i=0; i < leftTemp; i++)
+        printf("%d ", leftBuffer[i]);
+    printf("\n");
+
+    for (int i=0; i < rightTemp; i++)
+        printf("%d ", rightBuffer[i]);
+
+    printf ("\n");
+    */
+   
     /* Merge into arr with below logic:
      loop
      */
+
     int a=0;int b=0;int c=0;
+
+    int arr_index = l;
+
     while(a < leftTemp && b < rightTemp){
         
         if(leftBuffer[a]<rightBuffer[b]){
-            *arrPtr = leftBuffer[a];
+            arrPtr[arr_index] = leftBuffer[a];
             a++;
-            arrPtr++;
+            arr_index++;
         }
         else if(leftBuffer[a]>rightBuffer[b]){
-            *arrPtr = rightBuffer[b];
+            arrPtr[arr_index] = rightBuffer[b];
             b++;
-            arrPtr++;
+            arr_index++;
         }
         
     }
     while(a < leftTemp){
-        *arrPtr = leftBuffer[a];
+        arrPtr[arr_index] = leftBuffer[a];
         a++;
-        arrPtr++;
+        arr_index++;
     }
     while(b < rightTemp){
-        *arrPtr = rightBuffer[a];
+        arrPtr[arr_index] = rightBuffer[b];
         b++;
-        arrPtr++;
+        arr_index++;
     }
     
+    return;
+
 }
 
 void printArray(int A[], int size)
@@ -73,6 +98,7 @@ void printArray(int A[], int size)
         printf("%d ", A[i]);
     printf("\n");
 }
+
 int main(int argc, const char * argv[]) {
     
     int arr[] = {12, 11, 13, 5, 6, 7};
