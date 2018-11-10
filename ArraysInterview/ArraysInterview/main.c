@@ -6,28 +6,32 @@
 //  Copyright © 2018 raghav. All rights reserved.
 //
 
-// Time complexity o(n) ; space complexity :o(n)
+// Time complexity o(nlogn) ; space complexity :o(1)
 #include <stdio.h>
 #include <stdlib.h>
+#include "Mergesort.h"
 
 #define sum 15
-#define max 20 // max represent the maximum value in the input array
 
 void numberSum(int* arr,int size)
 {
-    int i,temp=0;
-    int hash[max]={0};
+    int i,l=0;
+    int r = size-1;
     for(i=0;i<size;i++){
-        temp = sum-*(arr+i);
-        if(temp == hash[temp] && (temp!=0)) printf("Numbers that add upto %d are at %d,%d\n",sum,i+1,temp);
-        hash[*(arr+i)] = *(arr+i);
+        if(*(arr+l)+*(arr+r)==sum) printf("The numbers that add upto %d is %d and %d",sum,*(arr+l),*(arr+r));
+        else if(*(arr+l)+*(arr+r)<sum)
+            l++;
+        else r++;
     }
+    printf("No matches!");
 }
 
 int main(int argc, const char * argv[]) {
-    int arr[] = {1,2,3,4,5,6,7,10};
-    int size = sizeof(arr)/ sizeof(arr[0]);
-    numberSum(arr, size);
+    int arr[] = {10,3,2,4,7,5};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    mergeSort(arr,0,size-1);
+    printArray(arr, size);   // un-comment to validate merge sort logic
+    //numberSum(arr, size);
     
     return 0;
 }
