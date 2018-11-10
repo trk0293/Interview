@@ -11,27 +11,26 @@
 #include <stdlib.h>
 #include "Mergesort.h"
 
-#define sum 15
+#define sum 7
 
 void numberSum(int* arr,int size)
 {
     int i,l=0;
     int r = size-1;
     for(i=0;i<size;i++){
-        if(*(arr+l)+*(arr+r)==sum) printf("The numbers that add upto %d is %d and %d",sum,*(arr+l),*(arr+r));
+        if(*(arr+l)+*(arr+r)==sum) {printf("The numbers that add upto %d is %d and %d \n",sum,*(arr+l),*(arr+r));l++;r--;}
         else if(*(arr+l)+*(arr+r)<sum)
             l++;
-        else r++;
+        else r--;
     }
-    printf("No matches!");
 }
 
 int main(int argc, const char * argv[]) {
-    int arr[] = {10,3,2,4,7,5};
+    int arr[] = {2,3,4,5,7,10};
     int size = sizeof(arr)/sizeof(arr[0]);
     mergeSort(arr,0,size-1);
     printArray(arr, size);   // un-comment to validate merge sort logic
-    //numberSum(arr, size);
+    numberSum(arr, size);
     
     return 0;
 }
