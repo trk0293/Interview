@@ -106,7 +106,7 @@ void palindrome(long int n){
 int main(int argc, const char * argv[]) {
     long int n=0;
     printf("enter a number:");
-    scanf("%d",&n);
+    scanf("%ld",&n);
     /************************************************************************************************/
     /*PRIME
     isPrime(n);
