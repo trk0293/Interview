@@ -15,7 +15,7 @@ void printArray(int A[], int size);
 void mergeSort(int* arrPtr,int l,int r){
     int middleIndex = (l+r)/2;
     /* left half */
-    if (r==l || r-l==1){
+    if (r==l /*|| r-l==1*/){
         return;
     }
     mergeSort(arrPtr, l, middleIndex);
@@ -34,6 +34,8 @@ void merge(int* arrPtr,int l,int m,int r){
     int *duparrPTr=arrPtr;
     int i,j=0; 
     int leftBuffer[leftTemp],rightBuffer[rightTemp];
+    //printf ("\nleft buffer size: %d",leftTemp);
+    //printf ("\nright buffer size: %d",rightTemp);
     for (i=0;i<leftTemp;i++){
         leftBuffer[i] = duparrPTr[l+i];
     }
@@ -87,7 +89,8 @@ void merge(int* arrPtr,int l,int m,int r){
         b++;
         arr_index++;
     }
-    
+    //printf("\n");
+    //printArray(arrPtr, arr_index);
     return;
 
 }
@@ -102,7 +105,7 @@ void printArray(int A[], int size)
 
 int main(int argc, const char * argv[]) {
     
-    int arr[] = {12, 11, 13, 5, 6, 7};
+    int arr[] = {10,3,2,4,7,5};
     int arr_size = sizeof(arr)/sizeof(arr[0]);
     mergeSort(arr, 0, arr_size - 1);
     printf("\nSorted array is \n");
