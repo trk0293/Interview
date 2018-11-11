@@ -7,8 +7,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <Mergesort.h>
 int main(int argc, const char * argv[]) {
-    printf("Hello Raghav \n");
+	int arr[]={2,1};
+	int size = sizeof(arr)/sizeof(arr[0]);
+	mergeSort(arr,0,size-1);
+	printArray(arr,size);
+    
     return 0;
 }
