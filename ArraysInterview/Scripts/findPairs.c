@@ -1,7 +1,7 @@
 //
 //  main.c
-//  Binary search
-//
+//   Find pairs of elements in array that sum up to "sum" variable in script.
+//   To test the code, un-comment main function. 
 //  Created by raghav on 11/9/18.
 //  Copyright © 2018 raghav. All rights reserved.
 //
