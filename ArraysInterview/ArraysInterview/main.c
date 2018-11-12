@@ -1,25 +1,18 @@
-//
-//  main.c
-//
-//  Created by raghav on 11/9/18.
-//  Copyright © 2018 raghav. All rights reserved.
-//
+// Moore voting algorithm to find the majority element in an array. 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <Mergesort.h>
-void majority(int* arr,int size){
-	int i=0;
-	for(i=0;i<=size/2;i++)
-	if(*(arr+i)==*(arr+i+(size/2))) printf("Majority element in the array is %d \n",*(arr+i));
-	return;
+
+
+
+#include<stdio.h>
+
+int findMajority(int* arr, int size){
+
 }
-int main(int argc, const char * argv[]) {
-	int arr[]={1,2,2,2,2,3,4};
-	int size = sizeof(arr)/sizeof(arr[0]);
-	//mergeSort(arr,0,size-1);
-	//printArray(arr,size);
-	majority(arr,size);
-    
-    return 0;
+
+
+int main(int argc, const char * argv[]){
+	int arr[]={1,1,1,1,2,3,4};
+	int size=sizeof(arr)/sizeof(arr[0]);
+	findMajority(arr,size);
+	return 0;
 }
