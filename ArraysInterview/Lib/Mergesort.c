@@ -16,7 +16,7 @@ void printArray(int* arr, int size);
 void mergeSort(int* arrPtr,int l,int r){
     int middleIndex = (l+r)/2;
     /* left half */
-    if (r==l || r-l==1){
+    if (r==l){
         return;
     }
     mergeSort(arrPtr, l, middleIndex);
