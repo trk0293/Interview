@@ -1,45 +1,27 @@
-// Moore voting algorithm to find the majority element in an array. 
-// T(n)=o(n);s(n)=o(n)
-
+//Find the maximum difference between two elements in an array such that larger element appears after the smaller number
+//propably T(n)=o(n^2)
 
 #include<stdio.h>
 #include<stdlib.h>
 
-int findMajority(int* arr, int size){
-	int* dupArr=(int*)malloc(sizeof(arr));
-	int i,count=0;
-	int index = *(arr);
-	/* Moore voting algorithm sub -1 end*/
-	for(i=0;i<size;i++){
-		if(*(arr+i)==index)
-			{
-				count++;
-				dupArr[index]=count;
-			}
-		else if(*(arr+i)!=index && dupArr[index]>0){
-				count--;
-				dupArr[index]=count;
-			}
-		else{
-				index = *(arr+i);
-				dupArr[index]=1;
-		}		
+
+void diffcal(int* arr,int size){
+	int l,r,lMax,rMax,diff=0;
+	for(r=size-1;r>=1;r--){
+		for(l=r-1;l>0;l--){
+			if(*(arr+r)-*(arr+l)>diff)
+			{diff = *(arr+r)-*(arr+l); lMax= *(arr+l);rMax=*(arr+r);} 
+		}
 	}
-	// printf("%d \n",index); // Un-coment to test Moore voting
-	count=0;
-	/* check if Moore's decision is true sub-2 end*/
-	for (i=0;i<size;i++){
-		if(*(arr+i)==index) count++;
-	}
-	if(count > size/2) printf("%d is majority in array \n",index);
-	else printf("There is no majority\n");
+	printf("The algo output %d and %d as numbers and %d as difference \n",lMax,rMax,diff);
+	return;
 }
 
 
-
 int main(int argc, const char * argv[]){
-	int arr[]={2,2,2,3,3,33,3,3,3,3,3,3,1,3,4};
+	int arr[]={4,3,10,2,9,1,6};
 	int size=sizeof(arr)/sizeof(arr[0]);
-	findMajority(arr,size);
+	diffcal(arr,size);
 	return 0;
+
 }
