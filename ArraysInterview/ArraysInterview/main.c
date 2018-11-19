@@ -1,22 +1,33 @@
-//Find the maximum difference between two elements in an array such that larger element appears after the smaller number
-//propably T(n)=o(n^2)
-
 #include<stdio.h>
 #include<stdlib.h>
 
 
 void diffcal(int* arr,int size){
-	int l,r,lMax,rMax,diff=0;
-	for(r=size-1;r>=1;r--){
-		for(l=r-1;l>0;l--){
-			if(*(arr+r)-*(arr+l)>diff)
-			{diff = *(arr+r)-*(arr+l); lMax= *(arr+l);rMax=*(arr+r);} 
-		}
-	}
-	printf("The algo output %d and %d as numbers and %d as difference \n",lMax,rMax,diff);
-	return;
+// step:1 create diff array. diff[i] = *(arr+i+1)-*(arr+i)
+int diffValue,i=0;
+int* diff= (int*)malloc(size*sizeof(int));
+for(i=0;i<size;i++){
+diff[i] = *(arr+i+1)-*(arr+i);
+}
+/*print diff array.  -- Debug test.
+for(i=0;i<size;i++){
+printf("diff on %d is %d \n",i,diff[i]);
+}
+*/
+// step 2 : Find the sub array that has great sum. Traverse throught diff array.
+for(i=0;i<size;i++){
+if(i==1) diffValue = diff[i];
+if((diff[i-1]>0) && (i>0))
+diffValue=diffValue+compare(diff[i],diff[i-1]));
+}
+printf("Largest difference is %d \n",diffValue);
+return ;
 }
 
+int compare(int a, int b){
+	if (a>=b) return a;
+	else return b;
+}
 
 int main(int argc, const char * argv[]){
 	int arr[]={4,3,10,2,9,1,6};
